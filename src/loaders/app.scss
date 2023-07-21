@@ -1,0 +1,5 @@
+// Patternfly expects the root Page component to be the height of the browser window
+body,
+#root {
+  height: 100%;
+}

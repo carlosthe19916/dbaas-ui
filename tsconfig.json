@@ -1,31 +1,22 @@
 {
-    "compilerOptions": {
-      "forceConsistentCasingInFileNames": true,
-      "resolveJsonModule": true,
-      "module": "esnext",
-      "lib": ["dom", "esnext"],
-      "importHelpers": true,
-      "declaration": false,
-      "sourceMap": true,
-      "strict": true,
-      "noUnusedLocals": true,
-      "noUnusedParameters": true,
-      "noImplicitReturns": true,
-      "noFallthroughCasesInSwitch": true,
-      "moduleResolution": "node",
-      "jsx": "react-jsx",
-      "esModuleInterop": true,
-      "target": "es6",
-      "noImplicitAny": true,
-      "skipLibCheck": true,
-      "outDir": "./dist",
-      "baseUrl": ".",
-      "paths": {
-        "@app/*": ["src/app/*"],
-        "@test-utils/*": ["test-utils/*"]
-      }
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "jsx": "react",
+    "lib": ["es2020", "dom"],
+    "module": "es2020",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "outDir": "./dist/",
+    "paths": {
+      "src/*": ["src/*"]
     },
-    "exclude": ["**/test_common", "node_modules"],
-    "include": ["./src/*", "./src/**/*"]
-  }
-  
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strictNullChecks": false,
+    "target": "es5"
+  },
+  "include": ["./src/"],
+  "exclude": ["node_modules"]
+}

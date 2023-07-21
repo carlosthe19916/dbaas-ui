@@ -1,0 +1,27 @@
+ls:
+  .travis:
+    .js: snake_case
+
+  config:
+    .js: point.case | kebab-case
+
+  src/loaders/insights:
+    .js: kebab-case | PascalCase
+
+  src/utilities:
+    .js: camelCase | snake_case
+
+  test:
+    .js: kebab-case | snake_case
+
+  .d.ts: kebab-case
+  .js: kebab-case | point.case
+  .test.js: kebab-case
+  .ts: kebab-case
+
+ignore:
+  - ".git"
+  - "dist"
+  - "node_modules"
+  - "test/node_modules"
+  - "test/cypress.config.js"
