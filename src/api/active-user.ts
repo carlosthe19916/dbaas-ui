@@ -6,10 +6,10 @@ class API extends HubAPI {
   apiPath = this.getUIPath('me/');
 
   getUser(): Promise<UserType> {
-    return this.http.get(this.apiPath).then((result) => result.data);
+    return this.http.get(this.apiPath).then((result: any) => result.data);
   }
 
-  saveUser(data) {
+  saveUser(data: any) {
     return this.http.put(this.apiPath, data);
   }
 
@@ -34,7 +34,7 @@ class API extends HubAPI {
 
   // Note: This does not reset the app's authentication state. That has to be done
   // separately by setting the user state in the app's root component
-  login(username, password) {
+  login(username: string, password: string) {
     const loginURL = this.getUIPath('auth/login/');
 
     // Make a get request to the login endpoint to set CSRF tokens before making

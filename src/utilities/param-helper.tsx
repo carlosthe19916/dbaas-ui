@@ -39,7 +39,7 @@ export class ParamHelper {
 
   // Replaces specified parameter with speficied value
   static setParam(p: object, key: string, value: ParamValueType) {
-    const params = cloneDeep(p);
+    const params: any = cloneDeep(p);
     params[key] = value;
 
     return params;
@@ -47,7 +47,7 @@ export class ParamHelper {
 
   // Appends parameter to existing value
   static appendParam(p: object, key: string, value: number | string) {
-    const params = cloneDeep(p);
+    const params: any = cloneDeep(p);
     if (params[key]) {
       if (Array.isArray(params[key])) {
         params[key].push(value);
@@ -73,7 +73,7 @@ export class ParamHelper {
   }
 
   // Removes a parameter, or a specific key value pair from a parameter object
-  static deleteParam(p, key: string, value?: string | number) {
+  static deleteParam(p: any, key: string, value?: string | number) {
     const params = cloneDeep(p);
     if (value && Array.isArray(params[key]) && params[key].length > 1) {
       const i = params[key].indexOf(value);
@@ -88,7 +88,7 @@ export class ParamHelper {
   }
 
   // Checks to see if a specific key value pair exists
-  static paramExists(params: object, key: string, value: string | number) {
+  static paramExists(params: any, key: string, value: string | number) {
     const param = params[key];
 
     if (param) {
@@ -103,7 +103,7 @@ export class ParamHelper {
   }
 
   // Returns the query string for the set of parameters
-  static getQueryString(params: object, ignoreParams?: string[]) {
+  static getQueryString(params: any, ignoreParams?: string[]) {
     const paramString = [];
 
     for (const key of Object.keys(params)) {
@@ -126,7 +126,7 @@ export class ParamHelper {
   // Reusable function that can be included in a component to update it's
   // internal state and page params at the same time
   static updateParamsMixin(ignoreParams?: string[]) {
-    return function (params: object, callback?) {
+    return function (this: any, params: object, callback?: any) {
       // Note. In the callback, make sure to reference the state as
       // this.state instead of const { foo } = this.state.
       // In the example above, foo only gets set to the latest state after
@@ -140,7 +140,7 @@ export class ParamHelper {
   }
 
   // removes any params not in ignoredParams from params and calls updateParams with it
-  static clearAllFilters({ params, ignoredParams, updateParams }) {
+  static clearAllFilters({ params, ignoredParams, updateParams }: any) {
     const deleteKeys = Object.keys(
       ParamHelper.getReduced(params, ignoredParams),
     );
@@ -153,7 +153,11 @@ export class ParamHelper {
   }
 
   // check if params are valid for sorting
-  static validSortParams = (sort, sortParams, defaultSort) => {
+  static validSortParams = (
+    sort: string,
+    sortParams: string,
+    defaultSort: string,
+  ) => {
     const isDesc = sort.includes('-');
 
     const ascSort = isDesc ? sort.replace('-', '') : sort;

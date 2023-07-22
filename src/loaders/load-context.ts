@@ -10,8 +10,8 @@ type ContextFragment = {
 
 export function loadContext(): Promise<ContextFragment> {
   const getFeatureFlags = FeatureFlagsAPI.get().then(
-    ({ data: featureFlags }) => ({
-      alerts: (featureFlags._messages || []).map((msg) => ({
+    ({ data: featureFlags }: any) => ({
+      alerts: (featureFlags._messages || []).map((msg: string) => ({
         variant: 'warning',
         title: msg.split(':')[1],
       })),
@@ -25,7 +25,7 @@ export function loadContext(): Promise<ContextFragment> {
     }))
     .catch(() => {
       // we need this even if ActiveUserAPI fails, otherwise isExternalAuth will always be false, breaking keycloak redirect
-      return getFeatureFlags.then(({ alerts, featureFlags }) => ({
+      return getFeatureFlags.then(({ alerts, featureFlags }: any) => ({
         alerts,
         featureFlags,
       }));

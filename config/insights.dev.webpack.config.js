@@ -10,16 +10,21 @@ module.exports = webpackBase({
   API_HOST: '',
 
   // Path to the API on the API host. EX: /api/trustification
-  API_BASE_PATH: '/api/trustification/',
+  API_BASE_PATH: '/api/automation-hub/',
 
   // Value for standalone.api.target
   API_PROXY_TARGET: `http://${proxyHost}:${proxyPort}`,
 
   // Path on the host where the UI is found. EX: /apps/trustification
+  // UI_BASE_PATH:
+  //   cloudBeta !== 'false'
+  //     ? '/preview/application-services/trusted-content/'
+  //     : '/application-services/trusted-content/',
+
   UI_BASE_PATH:
     cloudBeta !== 'false'
-      ? '/preview/application-services/trusted-content/'
-      : '/application-services/trusted-content/',
+      ? '/preview/ansible/automation-hub/'
+      : '/ansible/automation-hub/',
 
   // Port that the UI is served over
   UI_PORT: 3000,

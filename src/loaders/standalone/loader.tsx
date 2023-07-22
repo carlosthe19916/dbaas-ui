@@ -4,7 +4,7 @@ import React from 'react';
 import { StandaloneLayout } from './layout';
 import { StandaloneRoutes } from './routes';
 
-const App = (_props) => {
+const App = () => {
   let routes = <StandaloneRoutes />;
   return <StandaloneLayout>{routes}</StandaloneLayout>;
 };

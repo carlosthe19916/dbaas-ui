@@ -15,11 +15,10 @@ console.log(basename);
 const Trustification = () => (
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      {/* <Router basename={basename}> */}
-      {/* <Provider store={init().getStore()}> */}
-      <App />
-      {/* </Provider> */}
-      {/* </Router> */}
+      <Provider store={init().getStore()}>
+        <App />
+      </Provider>
+
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </React.StrictMode>

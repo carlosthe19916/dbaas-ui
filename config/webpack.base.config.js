@@ -116,9 +116,6 @@ module.exports = (inputConfigs) => {
     // insights dev
     ...(!isStandalone &&
       !isBuild && {
-        // useProxy: false,
-        // env: cloudBeta !== 'false' ? 'stage-beta' : 'stage-stable',
-
         appUrl: customConfigs.UI_BASE_PATH.includes('/preview/')
           ? [
               customConfigs.UI_BASE_PATH,

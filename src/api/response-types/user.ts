@@ -1,4 +1,4 @@
-export class ModelPermissionsType {
+export interface ModelPermissionsType {
   [key: string]: {
     global_description: string;
     has_model_permission: boolean;
@@ -8,13 +8,13 @@ export class ModelPermissionsType {
   };
 }
 
-export class GroupType {
+export interface GroupType {
   id: number;
   name: string;
   object_roles?: string[];
 }
 
-export class UserType {
+export interface UserType {
   id?: number;
   username: string;
   first_name?: string;

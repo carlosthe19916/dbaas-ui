@@ -11,8 +11,7 @@ const routes = [
   { path: '/', component: HomePage },
   { path: '/advisory', component: AdvisoriesPage },
   { path: '/sbom', component: SBOMsPage },
-  { path: `/sbom/:sbomId`, element: <ViewSBOMPage /> },
-  { path: `/*`, element: <OopsPage /> },
+  { path: `/sbom/:sbomId`, component: ViewSBOMPage },
 ];
 
 /**

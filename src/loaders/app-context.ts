@@ -5,8 +5,10 @@ import { UserType } from 'src/api/user';
 export interface IAppContextType {
   user?: UserType;
   setUser: (user: UserType) => void;
-  featureFlags: FeatureFlagsType;
+  featureFlags?: FeatureFlagsType;
 }
 
-export const AppContext = React.createContext<IAppContextType>(undefined);
+export const AppContext = React.createContext<IAppContextType | undefined>(
+  undefined,
+);
 export const useContext = () => React.useContext(AppContext);

@@ -79,6 +79,7 @@
     "@redhat-cloud-services/frontend-components-config": "^5.0.5",
     "@redhat-cloud-services/frontend-components-config-utilities": "^2.0.3",
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
+    "@types/js-cookie": "^3.0.3",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.62.0",
     "babel-core": "^7.0.0-bridge.0",
@@ -106,7 +107,7 @@
     "webpack-cli": "^5.1.4"
   },
   "insights": {
-    "appname": "dbaas"
+    "appname": "automation-hub"
   },
   "husky": {
     "hooks": {

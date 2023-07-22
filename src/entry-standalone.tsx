@@ -9,7 +9,7 @@ import App from './loaders/standalone/loader';
 
 if (!window.location.pathname.includes(UI_BASE_PATH)) {
   // react-router v6 won't redirect to base path by default
-  window.history.pushState(null, null, UI_BASE_PATH);
+  window.history.pushState(null, '', UI_BASE_PATH);
 }
 
 const queryClient = new QueryClient();

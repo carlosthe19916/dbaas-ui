@@ -1,4 +1,4 @@
-export class FeatureFlagsType {
+export interface FeatureFlagsType {
   // execution environments
   container_signing: boolean;
   execution_environments: boolean;

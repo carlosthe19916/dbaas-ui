@@ -17,6 +17,18 @@
     "strictNullChecks": true,
     "target": "es5",
     "strict": true, // Includes alwaysStrict and noImplicitAny
+    "noUnusedParameters": false, // TODO: activate when fixed
+    "noUnusedLocals": false, // TODO: activate when fixed
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitThis": true,
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "importHelpers": true,
+    "noEmitHelpers": true,
+    "downlevelIteration": true,
   },
   "include": ["./src/"],
   "exclude": ["node_modules"]

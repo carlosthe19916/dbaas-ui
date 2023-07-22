@@ -4,11 +4,11 @@ import { Constants } from 'src/constants';
 import { ParamHelper } from 'src/utilities';
 
 export class BaseAPI {
-  apiPath: string;
+  apiPath: string = '';
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   http: any;
 
-  constructor(apiBaseUrl) {
+  constructor(apiBaseUrl: string) {
     this.http = axios.create({
       baseURL: apiBaseUrl,
       paramsSerializer: {
@@ -16,10 +16,12 @@ export class BaseAPI {
       },
     });
 
-    this.http.interceptors.request.use((request) => this.authHandler(request));
+    this.http.interceptors.request.use((request: any) =>
+      this.authHandler(request),
+    );
   }
 
-  public mapPageToOffset(p) {
+  public mapPageToOffset(p: any) {
     // Need to copy the object to make sure we aren't accidentally
     // setting page state
     const params = { ...p };
@@ -51,11 +53,11 @@ export class BaseAPI {
     return this.http.get(this.getPath(apiPath) + id + '/');
   }
 
-  update(id: string | number, data, apiPath?: string) {
+  update(id: string | number, data: any, apiPath?: string) {
     return this.http.put(this.getPath(apiPath) + id + '/', data);
   }
 
-  create(data, apiPath?: string) {
+  create(data: any, apiPath?: string) {
     return this.http.post(this.getPath(apiPath), data);
   }
 
@@ -63,15 +65,15 @@ export class BaseAPI {
     return this.http.delete(this.getPath(apiPath) + id + '/');
   }
 
-  patch(id: string | number, data, apiPath?: string) {
+  patch(id: string | number, data: any, apiPath?: string) {
     return this.http.patch(this.getPath(apiPath) + id + '/', data);
   }
 
-  getPath(apiPath: string) {
+  getPath(apiPath?: string) {
     return apiPath || this.apiPath;
   }
 
-  private async authHandler(request) {
+  private async authHandler(request: any) {
     // This runs before every API request and ensures that the user is
     // authenticated before the request is executed. On most calls it appears
     // to only add ~10ms of latency.
