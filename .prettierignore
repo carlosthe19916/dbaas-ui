@@ -1,4 +1,5 @@
 src/index.html
+*.svg
 *.json
 .*.sw[po]
 *.xml
