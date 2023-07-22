@@ -74,7 +74,7 @@ export const SBOMBsPage: React.FC = () => {
     }),
   );
 
-  const tableControls = useTableControlProps<Package, string, string>({
+  const tableControls = useTableControlProps({
     ...tableControlState, // Includes filterState, sortState and paginationState
     idProperty: 'id',
     currentPageItems,

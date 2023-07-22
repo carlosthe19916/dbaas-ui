@@ -7,15 +7,16 @@
     "lib": ["es2020", "dom"],
     "module": "es2020",
     "moduleResolution": "node",
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "outDir": "./dist/",
     "paths": {
       "src/*": ["src/*"]
     },
     "skipLibCheck": true,
     "sourceMap": true,
-    "strictNullChecks": false,
-    "target": "es5"
+    "strictNullChecks": true,
+    "target": "es5",
+    "strict": true, // Includes alwaysStrict and noImplicitAny
   },
   "include": ["./src/"],
   "exclude": ["node_modules"]

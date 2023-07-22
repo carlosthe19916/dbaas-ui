@@ -75,7 +75,7 @@ export const AdvisoriesPage: React.FC = () => {
     }),
   );
 
-  const tableControls = useTableControlProps<Advisory, string, string>({
+  const tableControls = useTableControlProps({
     ...tableControlState, // Includes filterState, sortState and paginationState
     idProperty: 'id',
     currentPageItems,

@@ -2,7 +2,6 @@ import { ToolbarItemProps, ToolbarProps } from '@patternfly/react-core';
 import spacing from '@patternfly/react-styles/css/utilities/Spacing/spacing';
 import {
   TableComposableProps,
-  TableProps,
   TdProps,
   ThProps,
   TrProps,
