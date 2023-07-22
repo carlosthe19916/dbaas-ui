@@ -1,11 +1,11 @@
 import React, { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-const HomePage = lazy(() => import('src/pages/home'));
-const AdvisoriesPage = lazy(() => import('src/pages/advisories'));
-const SBOMsPage = lazy(() => import('src/pages/sboms'));
-const ViewSBOMPage = lazy(() => import('src/pages/view-sbom'));
-const OopsPage = lazy(() => import('src/pages/oops'));
+const HomePage = lazy(() => import('src/pages/insights/home'));
+const AdvisoriesPage = lazy(() => import('src/pages/common/advisories'));
+const SBOMsPage = lazy(() => import('src/pages/common/sboms'));
+const ViewSBOMPage = lazy(() => import('src/pages/common/view-sbom'));
+const OopsPage = lazy(() => import('src/pages/common/oops'));
 
 const routes = [
   { path: '/', component: HomePage },

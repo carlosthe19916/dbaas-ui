@@ -104,7 +104,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <React.Fragment>
+    <div className='home-page'>
       <PageHeader className='dbaas-home-page__header pf-u-p-2xl'>
         <Grid>
           <GridItem sm={12} md={6}>
@@ -291,7 +291,7 @@ const HomePage = () => {
           </SplitItem>
         </Split>
       </PageSection>
-    </React.Fragment>
+    </div>
   );
 };
 

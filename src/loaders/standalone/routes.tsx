@@ -1,10 +1,10 @@
 import { Bullseye, Spinner } from '@patternfly/react-core';
 import React, { Suspense, lazy } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
-import AdvisoriesPage from 'src/pages/advisories';
-import HomePage from 'src/pages/home';
-import SBOMsPage from 'src/pages/sboms';
-import ViewSBOMPage from 'src/pages/view-sbom';
+import AdvisoriesPage from 'src/pages/common/advisories';
+import SBOMsPage from 'src/pages/common/sboms';
+import ViewSBOMPage from 'src/pages/common/view-sbom';
+import HomePage from 'src/pages/community/home';
 
 export const ViewSBOMRouteParam = 'sbomId';
 
