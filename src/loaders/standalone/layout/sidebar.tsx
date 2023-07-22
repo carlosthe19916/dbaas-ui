@@ -9,6 +9,7 @@ import ExternalLinkSquareAltIcon from '@patternfly/react-icons/dist/esm/icons/ex
 import { css } from '@patternfly/react-styles';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { Paths } from 'src/paths';
 import { LayoutTheme } from './layout-constants';
 
 const LINK_CLASS = 'pf-c-nav__link';
@@ -40,17 +41,17 @@ export const SidebarApp: React.FC = () => {
             >
               <li className='pf-v5-c-nav__item'>
                 <NavLink
-                  to='/sbom'
+                  to={Paths.sbom}
                   className={({ isActive }) => {
                     return css(LINK_CLASS, isActive ? ACTIVE_LINK_CLASS : '');
                   }}
                 >
-                  Packages
+                  SBOMs
                 </NavLink>
               </li>
               <li className='pf-v5-c-nav__item'>
                 <NavLink
-                  to='/advisory'
+                  to={Paths.advisory}
                   className={({ isActive }) => {
                     return css(LINK_CLASS, isActive ? ACTIVE_LINK_CLASS : '');
                   }}

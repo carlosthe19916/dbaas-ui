@@ -116,8 +116,11 @@ export const AdvisoryDetails: React.FC<AdvisoryDetailsProps> = ({
               <Td>
                 {vulnerability.scores
                   .flatMap((item) => item.cvss_v3)
-                  .map((item) => (
-                    <Label {...baseSeverityList[item.baseSeverity].labelProps}>
+                  .map((item, index) => (
+                    <Label
+                      key={index}
+                      {...baseSeverityList[item.baseSeverity].labelProps}
+                    >
                       {item.baseScore}
                     </Label>
                   ))}
@@ -135,12 +138,12 @@ export const AdvisoryDetails: React.FC<AdvisoryDetailsProps> = ({
                 <DescriptionList>
                   {Object.entries(vulnerability.product_status).map(
                     ([key, value]) => (
-                      <DescriptionListGroup>
+                      <DescriptionListGroup key={key}>
                         <DescriptionListTerm>{key}</DescriptionListTerm>
                         <DescriptionListDescription>
                           <List>
-                            {value.map((item) => (
-                              <ListItem>{item}</ListItem>
+                            {value.map((item, index) => (
+                              <ListItem key={index}>{item}</ListItem>
                             ))}
                           </List>
                         </DescriptionListDescription>

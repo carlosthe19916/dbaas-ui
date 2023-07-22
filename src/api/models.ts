@@ -31,6 +31,10 @@ export interface ApiPaginatedResult<T> {
 //
 
 export type AdvisorySeverity = 'Low' | 'Moderate' | 'Important' | 'Critical';
+export type AdvisoryCategory =
+  | 'csaf_base'
+  | 'csaf_security_advisory'
+  | 'csaf_vex';
 
 export interface Advisory {
   id: string;
@@ -45,8 +49,36 @@ export interface Advisory {
 }
 
 export interface AdvisoryDetails {
+  document: AdvisoryDocument;
   product_tree: ProductTree;
   vulnerabilities: Vulnerability[];
+}
+
+export interface AdvisoryDocument {
+  title: string;
+  category: AdvisoryCategory | string;
+  aggregate_severity: {
+    text: AdvisorySeverity;
+    namespace: string;
+  };
+  publisher: {
+    name: string;
+    category: string;
+    namespace: string;
+    issuing_authority: string;
+  };
+  tracking: {
+    id: string;
+    status: string;
+    initial_release_date: string;
+    current_release_date: string;
+  };
+  references: {
+    category: string;
+    url: string;
+    summary: string;
+  }[];
+  notes: { title: string; text: string; category: string }[];
 }
 
 export interface ProductTree {
@@ -81,6 +113,9 @@ export interface Vulnerability {
     name: string;
   };
   product_status: { [k: string]: string[] };
+  notes: { title: string; text: string; category: string }[];
+  ids: { system_name: string; text: string }[];
+  references: { category: string; summary: string; url: string }[];
 }
 
 export interface Score {

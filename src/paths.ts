@@ -25,5 +25,8 @@ export function formatPath(path: string, data: any = {}, params?: ParamType) {
 }
 
 export enum Paths {
-  ansibleRemoteDetail = '/ansible/remotes/:name',
+  advisory = '/advisory',
+  advisoryEdit = '/advisory/:advisoryId',
+  sbom = '/sbom',
+  sbombEdit = '/sbom/:sbomId',
 }

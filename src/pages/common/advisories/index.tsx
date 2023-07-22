@@ -23,7 +23,7 @@ import {
   Tr,
 } from '@patternfly/react-table';
 import React from 'react';
-import { Advisory } from 'src/api/models';
+import { NavLink } from 'react-router-dom';
 import { FilterToolbar, FilterType } from 'src/components/FilterToolbar';
 import { SimplePagination } from 'src/components/SimplePagination';
 import {
@@ -37,6 +37,7 @@ import {
 } from 'src/hooks/table-controls';
 import { useTableControlUrlParams } from 'src/hooks/table-controls';
 import { useSelectionState } from 'src/hooks/useSelectionState';
+import { Paths, formatPath } from 'src/paths';
 import { useFetchAdvisories } from 'src/queries/advisories';
 import { AdvisoryDetails } from './components/details';
 import { Severity } from './components/severity';
@@ -158,7 +159,13 @@ export const AdvisoriesPage: React.FC = () => {
                         rowIndex={rowIndex}
                       >
                         <Td width={15} {...getTdProps({ columnKey: 'id' })}>
-                          {item.id}
+                          <NavLink
+                            to={formatPath(Paths.advisoryEdit, {
+                              advisoryId: item.id,
+                            })}
+                          >
+                            {item.id}
+                          </NavLink>
                         </Td>
                         <Td
                           width={45}

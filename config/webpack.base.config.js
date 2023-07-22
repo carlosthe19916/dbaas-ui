@@ -251,7 +251,7 @@ module.exports = (inputConfigs) => {
   // @patternfly/react-code-editor
   plugins.push(
     new MonacoWebpackPlugin({
-      languages: ['yaml'],
+      languages: ['yaml', 'json'],
     }),
   );
 

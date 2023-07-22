@@ -3,18 +3,19 @@ import React, { Suspense, lazy } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
 import AdvisoriesPage from 'src/pages/common/advisories';
 import SBOMsPage from 'src/pages/common/sboms';
+import ViewAdvisoryPage from 'src/pages/common/view-advisory';
 import ViewSBOMPage from 'src/pages/common/view-sbom';
 import HomePage from 'src/pages/community/home';
-
-export const ViewSBOMRouteParam = 'sbomId';
+import { Paths } from 'src/paths';
 
 export const StandaloneRoutes = () => {
   const allRoutes = useRoutes([
     { path: '/', element: <HomePage /> },
-    { path: '/advisory', element: <AdvisoriesPage /> },
-    { path: '/sbom', element: <SBOMsPage /> },
-    { path: `/sbom/:${ViewSBOMRouteParam}`, element: <ViewSBOMPage /> },
-    { path: '*', element: <Navigate to='/' /> },
+    { path: Paths.advisory, element: <AdvisoriesPage /> },
+    { path: Paths.advisoryEdit, element: <ViewAdvisoryPage /> },
+    { path: Paths.sbom, element: <SBOMsPage /> },
+    { path: Paths.sbombEdit, element: <ViewSBOMPage /> },
+    // { path: '*', element: <Navigate to='/' /> },
   ]);
 
   return (

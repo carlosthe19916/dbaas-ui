@@ -37,6 +37,7 @@ import {
   useTableControlUrlParams,
 } from 'src/hooks/table-controls';
 import { useSelectionState } from 'src/hooks/useSelectionState';
+import { Paths, formatPath } from 'src/paths';
 import { useFetchPackages } from 'src/queries/packages';
 
 export const SBOMBsPage: React.FC = () => {
@@ -158,7 +159,11 @@ export const SBOMBsPage: React.FC = () => {
                         rowIndex={rowIndex}
                       >
                         <Td width={15} {...getTdProps({ columnKey: 'name' })}>
-                          <NavLink to={`/sbomb/${item.id}`}>
+                          <NavLink
+                            to={formatPath(Paths.sbombEdit, {
+                              sbomId: item.id,
+                            })}
+                          >
                             {item.name}
                           </NavLink>
                         </Td>
