@@ -13,7 +13,6 @@ import DownloadIcon from '@patternfly/react-icons/dist/esm/icons/download-icon';
 import spacing from '@patternfly/react-styles/css/utilities/Spacing/spacing';
 import {
   ExpandableRowContent,
-  Table,
   TableComposable,
   Tbody,
   Td,
@@ -22,9 +21,13 @@ import {
   Tr,
 } from '@patternfly/react-table';
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Package } from 'src/api/models';
-import { FilterToolbar, FilterType } from 'src/components/FilterToolbar';
+import {
+  FilterCategory,
+  FilterToolbar,
+  FilterType,
+} from 'src/components/FilterToolbar';
 import { SimplePagination } from 'src/components/SimplePagination';
 import {
   ConditionalTableBody,
@@ -41,6 +44,49 @@ import { Paths, formatPath } from 'src/paths';
 import { useFetchPackages } from 'src/queries/packages';
 
 export const SBOMBsPage: React.FC = () => {
+  const filterCategories: FilterCategory<
+    Package,
+    'q' | 'product' | 'type' | 'supplier'
+  >[] = [
+    {
+      key: 'q',
+      title: 'Q',
+      type: FilterType.search,
+      placeholderText: 'Search',
+    },
+    {
+      key: 'product',
+      title: 'Product',
+      placeholderText: 'Product',
+      type: FilterType.multiselect,
+      selectOptions: [
+        { key: 'ubi7', value: 'UBI 7' },
+        { key: 'ubi8', value: 'UBI 8' },
+        { key: 'ubi9', value: 'UBI 9' },
+        { key: 'rhel7', value: 'Red Hat Enterprise Linux 7' },
+        { key: 'rhel8', value: 'Red Hat Enterprise Linux 8' },
+        { key: 'rhel9', value: 'Red Hat Enterprise Linux 9' },
+        { key: 'ansible', value: 'Ansible' },
+        { key: 'amq', value: 'AMQ' },
+        { key: 'quarkus', value: 'Quarkus' },
+      ],
+    },
+    {
+      key: 'type',
+      title: 'Type',
+      placeholderText: 'Type',
+      type: FilterType.multiselect,
+      selectOptions: [{ key: 'container', value: 'Container' }],
+    },
+    {
+      key: 'supplier',
+      title: 'Supplier',
+      placeholderText: 'Supplier',
+      type: FilterType.multiselect,
+      selectOptions: [{ key: 'redhat', value: 'Red Hat' }],
+    },
+  ];
+
   const tableControlState = useTableControlUrlParams({
     columnNames: {
       name: 'Name',
@@ -53,14 +99,7 @@ export const SBOMBsPage: React.FC = () => {
     },
     sortableColumns: [],
     initialSort: null,
-    filterCategories: [
-      {
-        key: 'q',
-        title: 'Name',
-        type: FilterType.search,
-        placeholderText: 'Search',
-      },
-    ],
+    filterCategories,
     initialItemsPerPage: 10,
     expandableVariant: 'single',
   });
@@ -118,7 +157,7 @@ export const SBOMBsPage: React.FC = () => {
         >
           <Toolbar {...toolbarProps}>
             <ToolbarContent>
-              <FilterToolbar {...filterToolbarProps} />
+              <FilterToolbar {...filterToolbarProps} showFiltersSideBySide />
               <ToolbarItem {...paginationToolbarItemProps}>
                 <SimplePagination
                   idPrefix='packages-table'

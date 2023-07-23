@@ -9,6 +9,7 @@ import {
   TextContent,
   Toolbar,
   ToolbarContent,
+  ToolbarGroup,
   ToolbarItem,
 } from '@patternfly/react-core';
 import DownloadIcon from '@patternfly/react-icons/dist/esm/icons/download-icon';
@@ -24,7 +25,12 @@ import {
 } from '@patternfly/react-table';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { FilterToolbar, FilterType } from 'src/components/FilterToolbar';
+import { Advisory } from 'src/api/models';
+import {
+  FilterCategory,
+  FilterToolbar,
+  FilterType,
+} from 'src/components/FilterToolbar';
 import { SimplePagination } from 'src/components/SimplePagination';
 import {
   ConditionalTableBody,
@@ -43,6 +49,43 @@ import { AdvisoryDetails } from './components/details';
 import { Severity } from './components/severity';
 
 export const AdvisoriesPage: React.FC = () => {
+  const filterCategories: FilterCategory<
+    Advisory,
+    'q' | 'severity' | 'product'
+  >[] = [
+    {
+      key: 'q',
+      title: 'Q',
+      type: FilterType.search,
+      placeholderText: 'Search',
+    },
+    {
+      key: 'severity',
+      title: 'Severities',
+      placeholderText: 'Severity',
+      type: FilterType.multiselect,
+      selectOptions: [
+        { key: 'low', value: 'Low' },
+        { key: 'moderate', value: 'Moderate' },
+        { key: 'important', value: 'Important' },
+        { key: 'critital', value: 'Critical' },
+      ],
+    },
+    {
+      key: 'product',
+      title: 'Product',
+      placeholderText: 'Product',
+      type: FilterType.multiselect,
+      selectOptions: [
+        { key: 'rhel7', value: 'Red Hat Enterprise Linux 7' },
+        { key: 'rhel8', value: 'Red Hat Enterprise Linux 8' },
+        { key: 'rhel8', value: 'Red Hat Enterprise Linux 9' },
+        { key: 'ocp3', value: 'OpenShift Container Platform 3' },
+        { key: 'ocp4', value: 'OpenShift Container Platform 4' },
+      ],
+    },
+  ];
+
   const tableControlState = useTableControlUrlParams({
     columnNames: {
       id: 'Id',
@@ -54,14 +97,7 @@ export const AdvisoriesPage: React.FC = () => {
     },
     sortableColumns: [],
     initialSort: null,
-    filterCategories: [
-      {
-        key: 'q',
-        title: 'Name',
-        type: FilterType.search,
-        placeholderText: 'Search',
-      },
-    ],
+    filterCategories,
     initialItemsPerPage: 10,
     expandableVariant: 'single',
   });
@@ -119,7 +155,7 @@ export const AdvisoriesPage: React.FC = () => {
         >
           <Toolbar {...toolbarProps}>
             <ToolbarContent>
-              <FilterToolbar {...filterToolbarProps} />
+              <FilterToolbar {...filterToolbarProps} showFiltersSideBySide />
               <ToolbarItem {...paginationToolbarItemProps}>
                 <SimplePagination
                   idPrefix='advisories-table'

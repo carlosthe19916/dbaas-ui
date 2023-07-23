@@ -17,9 +17,6 @@ export class BaseAPI {
   constructor(apiBaseUrl: string) {
     this.http = axios.create({
       baseURL: apiBaseUrl,
-      paramsSerializer: {
-        serialize: (params) => ParamHelper.getQueryString(params),
-      },
     });
 
     this.http.interceptors.request.use((request: any) =>
@@ -34,8 +31,9 @@ export class BaseAPI {
   getPaginatedResult = <T>(
     apiPath: string,
     params: ApiRequestParams = {},
-  ): Promise<ApiPaginatedResult<T>> =>
-    this.http
+  ): Promise<ApiPaginatedResult<T>> => {
+    console.log(serializeRequestParamsForApi(params));
+    return this.http
       .get<ApiSearchResult<T>>(this.getPath(apiPath), {
         params: serializeRequestParamsForApi(params),
       })
@@ -44,6 +42,7 @@ export class BaseAPI {
         total: data.total,
         params,
       }));
+  };
 
   getPath(apiPath?: string) {
     return apiPath || this.apiPath;
