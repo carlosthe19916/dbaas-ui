@@ -1,19 +1,16 @@
 # Builder image
 FROM registry.access.redhat.com/ubi9/nodejs-18:latest as builder
 
-WORKDIR /workspace/
-RUN mkdir -p /workspace/ && apk add --no-cache git
-
 USER 1001
-COPY --chown=1001 . /workspace/
+COPY --chown=1001 . .
 RUN npm ci && npm run build-community
 
 # Runner image
 FROM registry.access.redhat.com/ubi9/nginx-122:latest
 
 USER 0
-COPY --from=builder /workspace/nginx.conf.template ./
-COPY --from=builder /workspace/dist /tmp/src/
+COPY --from=builder /nginx.conf.template ./
+COPY --from=builder /dist /tmp/src/
 RUN chown -R 1001:0 /tmp/src
 USER 1001
 
@@ -37,7 +34,7 @@ LABEL name="trustification/spog-ui" \
 RUN /usr/libexec/s2i/assemble
 
 # Set environment variables
-COPY --from=builder /workspace/entrypoint.sh ./
+COPY --from=builder /entrypoint.sh ./
 ENTRYPOINT ["./entrypoint.sh"]
 
 CMD /usr/libexec/s2i/run
