@@ -29,6 +29,6 @@ jobs:
       - name: Install
         run: npm clean-install
       - name: Build
-        run: npm run build
+        run: npm run build-community
       # - name: Test
       #   run: npm run test -- --coverage --watchAll=false
