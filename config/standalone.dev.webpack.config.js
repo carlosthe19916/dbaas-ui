@@ -36,13 +36,21 @@ module.exports = webpackBase({
   // https://webpack.js.org/configuration/dev-server/#devserverproxy
   // used to get around CORS requirements when running in dev mode
   WEBPACK_PROXY: {
+    '/api/': {
+      target: `https://api.trustification.dev`,
+      secure: false,
+      changeOrigin: true,
+      logLevel: process.env.UI_DEBUG ? 'debug' : 'info',
+      pathRewrite: {
+        '^/api/trustification/': '/api/',
+      },
+    },
     // '/api/': {
-    //   target: `https://api.trustification.dev`,
-    //   secure: false,
-    //   changeOrigin: true,
-    //   logLevel: process.env.UI_DEBUG ? 'debug' : 'info',
+    //   target: `http://${proxyHost}:${proxyPort}`,
+    //   pathRewrite: {
+    //     '^/api/trustification/': '/api/',
+    //   },
     // },
-    '/api/': `http://${proxyHost}:${proxyPort}`,
     '/vexination/': `http://${proxyHost}:${proxyPort}`,
     '/bombastic/': `http://${proxyHost}:${proxyPort}`,
   },

@@ -1,4 +1,6 @@
 import {
+  Breadcrumb,
+  BreadcrumbItem,
   PageSection,
   PageSectionVariants,
   Spinner,
@@ -10,9 +12,9 @@ import {
   TextContent,
 } from '@patternfly/react-core';
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
+import { Paths, formatPath } from 'src/paths';
 import { useAdvisoryById } from 'src/queries/advisories';
-import { usePackageById } from 'src/queries/packages';
 import { Notes } from './components/notes';
 import { Overview } from './components/overview';
 import { Source } from './components/source';
@@ -30,6 +32,14 @@ export const ViewAdvisoryPage: React.FC = () => {
 
   return (
     <>
+      <PageSection type='breadcrumb'>
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <NavLink to={formatPath(Paths.advisory)}>Advisories</NavLink>
+          </BreadcrumbItem>
+          <BreadcrumbItem isActive>Details</BreadcrumbItem>
+        </Breadcrumb>
+      </PageSection>
       <PageSection variant={PageSectionVariants.light}>
         <TextContent>
           <Text component='h1'>{advisoryId}</Text>

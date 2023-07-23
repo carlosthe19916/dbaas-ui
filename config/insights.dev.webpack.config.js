@@ -1,7 +1,7 @@
 const webpackBase = require('./webpack.base.config');
 
-const proxyHost = process.env.API_PROXY_HOST || 'localhost';
-const proxyPort = process.env.API_PROXY_PORT || '5001';
+const proxyHost = process.env.API_PROXY_HOST || '127.0.0.1';
+const proxyPort = process.env.API_PROXY_PORT || '8083';
 
 const cloudBeta = process.env.TRUST_CLOUD_BETA; // "true" | "false" | undefined (=default)
 
@@ -10,10 +10,11 @@ module.exports = webpackBase({
   API_HOST: '',
 
   // Path to the API on the API host. EX: /api/trustification
-  API_BASE_PATH: '/api/automation-hub/',
+  API_BASE_PATH: '/api/',
 
   // Value for standalone.api.target
-  API_PROXY_TARGET: `http://${proxyHost}:${proxyPort}`,
+  API_PROXY_TARGET: `https://api.trustification.dev`,
+  // API_PROXY_TARGET: `http://${proxyHost}:${proxyPort}`,
 
   // Path on the host where the UI is found. EX: /apps/trustification
   // UI_BASE_PATH:

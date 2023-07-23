@@ -1,4 +1,6 @@
 import {
+  Breadcrumb,
+  BreadcrumbItem,
   PageSection,
   PageSectionVariants,
   Spinner,
@@ -10,16 +12,17 @@ import {
   TextContent,
 } from '@patternfly/react-core';
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
+import { Paths, formatPath } from 'src/paths';
 import { usePackageById } from 'src/queries/packages';
 import { Overview } from './components/overview';
 import { Packages } from './components/packages';
 import { Source } from './components/source';
 
 export const ViewSBOMPage: React.FC = () => {
-  const { sbombId } = useParams();
+  const { sbomId } = useParams();
 
-  const { result, isFetching } = usePackageById(sbombId || '');
+  const { result, isFetching } = usePackageById(sbomId || '');
 
   const contentRef1 = React.createRef<HTMLElement>();
   const contentRef2 = React.createRef<HTMLElement>();
@@ -27,9 +30,17 @@ export const ViewSBOMPage: React.FC = () => {
 
   return (
     <>
+      <PageSection type='breadcrumb'>
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <NavLink to={formatPath(Paths.sbom)}>SBOMs</NavLink>
+          </BreadcrumbItem>
+          <BreadcrumbItem isActive>Details</BreadcrumbItem>
+        </Breadcrumb>
+      </PageSection>
       <PageSection variant={PageSectionVariants.light}>
         <TextContent>
-          <Text component='h1'>{sbombId}</Text>
+          <Text component='h1'>{sbomId}</Text>
           <Text component='p'>SBOM detail information</Text>
         </TextContent>
       </PageSection>

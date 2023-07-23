@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { ApiPaginatedResult, ApiRequestParams, Package } from 'src/api/models';
-import { getPackageById, getpackages } from 'src/api/rest';
+import { PackageAPI } from 'src/api/package';
 import { serializeRequestParamsForApi } from 'src/hooks/table-controls';
 
 export interface IPackagesFetchState {
@@ -19,7 +19,7 @@ export const useFetchPackages = (params: ApiRequestParams = {}) => {
       PackagesQueryKey,
       serializeRequestParamsForApi(params).toString(),
     ],
-    queryFn: async () => await getpackages(params),
+    queryFn: async () => await PackageAPI.search(params),
     onError: (error) => console.log('error, ', error),
     keepPreviousData: true,
   });
@@ -34,7 +34,7 @@ export const useFetchPackages = (params: ApiRequestParams = {}) => {
 export const usePackageById = (id: string) => {
   const { data, isLoading, error } = useQuery(
     [PackagesQueryKey, id],
-    async () => (await getPackageById(id)).data,
+    async () => (await PackageAPI.get(id)).data,
     { onError: (error) => console.log(error) },
   );
 

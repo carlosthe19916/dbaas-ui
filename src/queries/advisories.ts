@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
+import { AdvisoryAPI } from 'src/api/advisory';
 import { Advisory, ApiPaginatedResult, ApiRequestParams } from 'src/api/models';
-import { getAdvisories, getAdvisoryById } from 'src/api/rest';
 import { serializeRequestParamsForApi } from 'src/hooks/table-controls';
 
 export interface IAdvisoriesFetchState {
@@ -19,7 +19,7 @@ export const useFetchAdvisories = (params: ApiRequestParams = {}) => {
       AdvisoriesQueryKey,
       serializeRequestParamsForApi(params).toString(),
     ],
-    queryFn: async () => await getAdvisories(params),
+    queryFn: async () => await AdvisoryAPI.search(params),
     onError: (error) => {
       console.log('error, ', error);
     },
@@ -36,7 +36,7 @@ export const useFetchAdvisories = (params: ApiRequestParams = {}) => {
 export const useAdvisoryById = (id: string) => {
   const { data, isLoading, error } = useQuery(
     [AdvisoriesQueryKey, id],
-    async () => (await getAdvisoryById(id)).data,
+    async () => (await AdvisoryAPI.get(id)).data,
     { onError: (error) => console.log(error) },
   );
 

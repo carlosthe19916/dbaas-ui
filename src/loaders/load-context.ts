@@ -22,6 +22,7 @@ export function loadContext(): Promise<ContextFragment> {
   return Promise.all([ActiveUserAPI.getUser(), getFeatureFlags])
     .then(([user, { alerts, featureFlags }]) => ({
       user,
+      featureFlags,
     }))
     .catch(() => {
       // we need this even if ActiveUserAPI fails, otherwise isExternalAuth will always be false, breaking keycloak redirect

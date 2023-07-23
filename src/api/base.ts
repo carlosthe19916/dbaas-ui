@@ -1,12 +1,18 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import Cookies from 'js-cookie';
 import { Constants } from 'src/constants';
+import { serializeRequestParamsForApi } from 'src/hooks/table-controls';
 import { ParamHelper } from 'src/utilities';
+import { ApiPaginatedResult, ApiRequestParams } from './models';
+
+interface ApiSearchResult<T> {
+  total: number;
+  result: T[];
+}
 
 export class BaseAPI {
   apiPath: string = '';
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  http: any;
+  http: AxiosInstance;
 
   constructor(apiBaseUrl: string) {
     this.http = axios.create({
@@ -21,53 +27,23 @@ export class BaseAPI {
     );
   }
 
-  public mapPageToOffset(p: any) {
-    // Need to copy the object to make sure we aren't accidentally
-    // setting page state
-    const params = { ...p };
-
-    const pageSize =
-      parseInt(params['page_size']) || Constants.DEFAULT_PAGE_SIZE;
-    const page = parseInt(params['page']) || 1;
-
-    delete params['page'];
-    delete params['page_size'];
-
-    params['offset'] = page * pageSize - pageSize;
-    params['limit'] = pageSize;
-
-    return params;
-  }
-
-  list(params?: object, apiPath?: string) {
-    // The api uses offset/limit for pagination. I think this is confusing
-    // for params on the front end, so we're going to use page/page size
-    // for the URL params and just map it to whatever the api expects.
-
-    return this.http.get(this.getPath(apiPath), {
-      params: this.mapPageToOffset(params),
-    });
-  }
-
   get(id: string, apiPath?: string) {
     return this.http.get(this.getPath(apiPath) + id + '/');
   }
 
-  update(id: string | number, data: any, apiPath?: string) {
-    return this.http.put(this.getPath(apiPath) + id + '/', data);
-  }
-
-  create(data: any, apiPath?: string) {
-    return this.http.post(this.getPath(apiPath), data);
-  }
-
-  delete(id: string | number, apiPath?: string) {
-    return this.http.delete(this.getPath(apiPath) + id + '/');
-  }
-
-  patch(id: string | number, data: any, apiPath?: string) {
-    return this.http.patch(this.getPath(apiPath) + id + '/', data);
-  }
+  getPaginatedResult = <T>(
+    apiPath: string,
+    params: ApiRequestParams = {},
+  ): Promise<ApiPaginatedResult<T>> =>
+    this.http
+      .get<ApiSearchResult<T>>(this.getPath(apiPath), {
+        params: serializeRequestParamsForApi(params),
+      })
+      .then(({ data }) => ({
+        data: data.result,
+        total: data.total,
+        params,
+      }));
 
   getPath(apiPath?: string) {
     return apiPath || this.apiPath;
