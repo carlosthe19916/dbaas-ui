@@ -24,7 +24,8 @@ jobs:
       - name: Checkout Push to Registry action
         uses: konveyor/release-tools/build-push-quay@main
         with:
-          architectures: 'amd64, arm64, ppc64le, s390x'
+          architectures: 'amd64, arm64, s390x'
+          # architectures: 'amd64, arm64, ppc64le, s390x'
           containerfile: './Dockerfile'
           image_name: 'spog-ui'
           image_namespace: 'carlosthe19916'
