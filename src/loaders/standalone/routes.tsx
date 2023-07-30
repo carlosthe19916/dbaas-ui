@@ -5,7 +5,7 @@ import AdvisoriesPage from 'src/pages/common/advisories';
 import SBOMsPage from 'src/pages/common/sboms';
 import ViewAdvisoryPage from 'src/pages/common/view-advisory';
 import ViewSBOMPage from 'src/pages/common/view-sbom';
-import HomePage from 'src/pages/community/home';
+import HomePage from 'src/pages/standalone/home';
 import { Paths } from 'src/paths';
 
 export const StandaloneRoutes = () => {

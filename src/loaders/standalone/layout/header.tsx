@@ -21,7 +21,7 @@ import HelpIcon from '@patternfly/react-icons/dist/esm/icons/help-icon';
 import QuestionCircleIcon from '@patternfly/react-icons/dist/esm/icons/question-circle-icon';
 import BarsIcon from '@patternfly/react-icons/dist/js/icons/bars-icon';
 import React, { useReducer, useState } from 'react';
-import logo from 'src/../static/images/logo.svg';
+import logo from 'src/../static/images/logo_rh.svg';
 import { AboutApp } from './about';
 
 export const HeaderApp: React.FC = () => {
@@ -66,7 +66,7 @@ export const HeaderApp: React.FC = () => {
         <MastheadMain>
           <MastheadBrand>
             <Brand
-              widths={{ default: '40px', md: '40px', '2xl': '50px' }}
+              widths={{ default: '200px', md: '200px', '2xl': '200px' }}
               src={logo}
               alt='Logo'
             >
