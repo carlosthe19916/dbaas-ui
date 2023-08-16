@@ -48,7 +48,7 @@ export const KeycloakProvider: React.FC<IKeycloakProviderProps> = ({
               () =>
                 new Promise<string>((resolve, reject) => {
                   if (keycloak.token) {
-                    if (keycloak.refreshToken) {                      
+                    if (keycloak.refreshToken) {
                       keycloak
                         .updateToken(60)
                         .then(() => {
