@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { KeycloakProvider } from './common/KeycloakProvider';
 import App from './loaders/standalone/loader';
 import { init } from './store';
 
@@ -18,14 +19,16 @@ const queryClient = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <Provider store={init().getStore()}>
-        <Router basename={UI_BASE_PATH}>
-          <App />
-        </Router>
-      </Provider>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <KeycloakProvider>
+      <QueryClientProvider client={queryClient}>
+        <Provider store={init().getStore()}>
+          <Router basename={UI_BASE_PATH}>
+            <App />
+          </Router>
+        </Provider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </KeycloakProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

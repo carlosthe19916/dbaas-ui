@@ -1,0 +1,6 @@
+{
+    "realm": "${KEYCLOAK_REALM}",    
+    "auth-server-url": "/auth",
+    "resource": "${KEYCLOAK_CLIENT_ID}",
+    "public-client": true
+}
