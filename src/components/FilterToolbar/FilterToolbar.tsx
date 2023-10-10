@@ -1,13 +1,12 @@
 import {
-  SelectOptionProps,
-  ToolbarItem,
-  ToolbarToggleGroup,
-} from '@patternfly/react-core';
-import {
   Dropdown,
   DropdownGroup,
   DropdownItem,
-  DropdownToggle,
+  DropdownList,
+  MenuToggle,
+  SelectOptionProps,
+  ToolbarItem,
+  ToolbarToggleGroup,
 } from '@patternfly/react-core';
 import FilterIcon from '@patternfly/react-icons/dist/esm/icons/filter-icon';
 import * as React from 'react';
@@ -130,24 +129,26 @@ export const FilterToolbar = <TItem, TFilterCategoryKey extends string>({
   );
 
   const renderDropdownItems = () => {
-    if (!!filterGroups.length) {
+    if (filterGroups.length) {
       return filterGroups.map((filterGroup) => (
         <DropdownGroup label={filterGroup} key={filterGroup}>
-          {filterCategories
-            .filter(
-              (filterCategory) => filterCategory.filterGroup === filterGroup,
-            )
-            .map((filterCategory) => {
-              return (
-                <DropdownItem
-                  id={`filter-category-${filterCategory.key}`}
-                  key={filterCategory.key}
-                  onClick={() => onCategorySelect(filterCategory)}
-                >
-                  {filterCategory.title}
-                </DropdownItem>
-              );
-            })}
+          <DropdownList>
+            {filterCategories
+              .filter(
+                (filterCategory) => filterCategory.filterGroup === filterGroup,
+              )
+              .map((filterCategory) => {
+                return (
+                  <DropdownItem
+                    id={`filter-category-${filterCategory.key}`}
+                    key={filterCategory.key}
+                    onClick={() => onCategorySelect(filterCategory)}
+                  >
+                    {filterCategory.title}
+                  </DropdownItem>
+                );
+              })}
+          </DropdownList>
         </DropdownGroup>
       ));
     } else {
@@ -176,21 +177,22 @@ export const FilterToolbar = <TItem, TFilterCategoryKey extends string>({
         {!showFiltersSideBySide && (
           <ToolbarItem>
             <Dropdown
-              isGrouped={!!filterGroups.length}
-              toggle={
-                <DropdownToggle
+              toggle={(toggleRef) => (
+                <MenuToggle
                   id='filtered-by'
-                  onToggle={() =>
+                  ref={toggleRef}
+                  onClick={() =>
                     setIsCategoryDropdownOpen(!isCategoryDropdownOpen)
                   }
                   isDisabled={isDisabled}
                 >
                   <FilterIcon /> {currentFilterCategory?.title}
-                </DropdownToggle>
-              }
+                </MenuToggle>
+              )}
               isOpen={isCategoryDropdownOpen}
-              dropdownItems={renderDropdownItems()}
-            />
+            >
+              {renderDropdownItems()}
+            </Dropdown>
           </ToolbarItem>
         )}
 

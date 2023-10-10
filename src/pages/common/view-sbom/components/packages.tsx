@@ -10,14 +10,12 @@ import {
   GridItem,
   Toolbar,
   ToolbarContent,
-  ToolbarGroup,
   ToolbarItem,
 } from '@patternfly/react-core';
 import spacing from '@patternfly/react-styles/css/utilities/Spacing/spacing';
 import {
   ExpandableRowContent,
   Table,
-  TableComposable,
   Tbody,
   Td,
   Th,
@@ -99,11 +97,7 @@ export const Packages: React.FC<PackagesProps> = ({ packageDetails }) => {
             </ToolbarItem>
           </ToolbarContent>
         </Toolbar>
-        <TableComposable
-          {...tableProps}
-          isExpandable
-          aria-label='Packages table'
-        >
+        <Table {...tableProps} isExpandable aria-label='Packages table'>
           <Thead>
             <Tr>
               <TableHeaderContentWithControls {...tableControls}>
@@ -199,7 +193,7 @@ export const Packages: React.FC<PackagesProps> = ({ packageDetails }) => {
               );
             })}
           </ConditionalTableBody>
-        </TableComposable>
+        </Table>
         <SimplePagination
           idPrefix='packages-table'
           isTop={false}

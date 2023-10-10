@@ -13,7 +13,7 @@ import DownloadIcon from '@patternfly/react-icons/dist/esm/icons/download-icon';
 import spacing from '@patternfly/react-styles/css/utilities/Spacing/spacing';
 import {
   ExpandableRowContent,
-  TableComposable,
+  Table,
   Tbody,
   Td,
   Th,
@@ -168,7 +168,7 @@ export const SBOMBsPage: React.FC = () => {
             </ToolbarContent>
           </Toolbar>
 
-          <TableComposable {...tableProps} aria-label='Packages table'>
+          <Table {...tableProps} aria-label='Packages table'>
             <Thead>
               <Tr>
                 <TableHeaderContentWithControls {...tableControls}>
@@ -256,7 +256,7 @@ export const SBOMBsPage: React.FC = () => {
                 );
               })}
             </ConditionalTableBody>
-          </TableComposable>
+          </Table>
 
           <SimplePagination
             idPrefix='dependencies-table'

@@ -1,9 +1,12 @@
-import { Button, PaginationProps, ToolbarItem } from '@patternfly/react-core';
 import {
+  Button,
   Dropdown,
   DropdownItem,
-  DropdownToggle,
-  DropdownToggleCheckbox,
+  DropdownList,
+  MenuToggle,
+  MenuToggleCheckbox,
+  PaginationProps,
+  ToolbarItem,
 } from '@patternfly/react-core';
 import AngleDownIcon from '@patternfly/react-icons/dist/esm/icons/angle-down-icon';
 import AngleRightIcon from '@patternfly/react-icons/dist/esm/icons/angle-right-icon';
@@ -62,7 +65,6 @@ export const ToolbarBulkSelector = <T,>({
     }
     return state;
   };
-  const [bulkSelectOpen, setBulkSelectOpen] = React.useState(false);
   const handleSelectAll = (checked: boolean) => {
     onSelectAll(!!checked);
   };
@@ -108,31 +110,33 @@ export const ToolbarBulkSelector = <T,>({
       {isExpandable && <ToolbarItem>{collapseAllBtn()}</ToolbarItem>}
       <ToolbarItem>
         <Dropdown
-          toggle={
-            <DropdownToggle
-              splitButtonItems={[
-                <DropdownToggleCheckbox
-                  id='bulk-selected-items-checkbox'
-                  key='bulk-select-checkbox'
-                  aria-label='Select all'
-                  onChange={() => {
-                    if (getBulkSelectState() !== false) {
-                      onSelectAll(false);
-                    } else {
-                      onSelectAll(true);
-                    }
-                  }}
-                  isChecked={getBulkSelectState()}
-                />,
-              ]}
-              onToggle={(_, isOpen) => {
-                setBulkSelectOpen(isOpen);
+          isOpen={isOpen}
+          toggle={(toggleRef) => (
+            <MenuToggle
+              ref={toggleRef}
+              onClick={() => setIsOpen(!isOpen)}
+              splitButtonOptions={{
+                items: [
+                  <MenuToggleCheckbox
+                    id='bulk-selected-items-checkbox'
+                    key='bulk-select-checkbox'
+                    aria-label='Select all'
+                    onChange={() => {
+                      if (getBulkSelectState() !== false) {
+                        onSelectAll(false);
+                      } else {
+                        onSelectAll(true);
+                      }
+                    }}
+                    isChecked={getBulkSelectState()}
+                  />,
+                ],
               }}
             />
-          }
-          isOpen={bulkSelectOpen}
-          dropdownItems={dropdownItems}
-        ></Dropdown>
+          )}
+        >
+          <DropdownList>{dropdownItems}</DropdownList>
+        </Dropdown>
       </ToolbarItem>
     </>
   );

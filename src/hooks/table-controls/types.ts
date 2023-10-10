@@ -51,7 +51,6 @@ export interface ITableControlCommonArgs<
   expandableVariant?: 'single' | 'compound' | null;
   hasActionsColumn?: boolean;
   variant?: TableProps['variant'];
-  hasClickableRows?: boolean;
 }
 
 // URL-param-specific args
@@ -69,6 +68,7 @@ export interface IExtraArgsForURLParamHooks<
 export interface ITableControlDataDependentArgs<TItem> {
   isLoading?: boolean;
   idProperty: KeyWithValueType<TItem, string | number>;
+  forceNumRenderedColumns?: number;
 }
 
 // Derived state option args
@@ -116,6 +116,5 @@ export interface IUseTableControlPropsArgs<
     IExpansionDerivedStateArgs<TItem, TColumnKey>,
     IActiveRowDerivedStateArgs<TItem> {
   currentPageItems: TItem[];
-  forceNumRenderedColumns?: number;
   selectionState: ReturnType<typeof useSelectionState<TItem>>; // TODO make this optional? fold it in?
 }

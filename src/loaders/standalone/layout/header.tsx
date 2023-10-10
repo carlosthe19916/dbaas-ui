@@ -4,18 +4,21 @@ import {
   ButtonVariant,
   Dropdown,
   DropdownItem,
-  KebabToggle,
+  DropdownList,
   Masthead,
   MastheadBrand,
   MastheadContent,
   MastheadMain,
   MastheadToggle,
+  MenuToggle,
+  MenuToggleElement,
   PageToggleButton,
   Toolbar,
   ToolbarContent,
   ToolbarGroup,
   ToolbarItem,
 } from '@patternfly/react-core';
+import EllipsisVIcon from '@patternfly/react-icons/dist/esm/icons/ellipsis-v-icon';
 import GithubIcon from '@patternfly/react-icons/dist/esm/icons/github-icon';
 import HelpIcon from '@patternfly/react-icons/dist/esm/icons/help-icon';
 import QuestionCircleIcon from '@patternfly/react-icons/dist/esm/icons/question-circle-icon';
@@ -28,22 +31,20 @@ export const HeaderApp: React.FC = () => {
   const [isAboutOpen, toggleIsAboutOpen] = useReducer((state) => !state, false);
   const [isKebabDropdownOpen, setIsKebabDropdownOpen] = useState(false);
 
-  const kebabDropdownItems = [
-    <DropdownItem
-      key='github'
-      component={
-        <a
-          href='https://github.com/trustification/trustification'
-          target='_blank'
-        >
-          <GithubIcon /> Github
-        </a>
-      }
-    />,
-    <DropdownItem key='about' onClick={toggleIsAboutOpen}>
-      <HelpIcon /> About
-    </DropdownItem>,
-  ];
+  const kebabDropdownItems = (
+    <>
+      <DropdownItem
+        key='github'
+        isExternalLink
+        to='https://github.com/trustification/trustification'
+      >
+        <GithubIcon /> Github
+      </DropdownItem>
+      <DropdownItem key='about' onClick={toggleIsAboutOpen}>
+        <HelpIcon /> About
+      </DropdownItem>
+    </>
+  );
 
   const onKebabDropdownToggle = () => {
     setIsKebabDropdownOpen(!isKebabDropdownOpen);
@@ -80,7 +81,7 @@ export const HeaderApp: React.FC = () => {
             <ToolbarContent>
               <ToolbarGroup
                 variant='icon-button-group'
-                alignment={{ default: 'alignRight' }}
+                align={{ default: 'alignRight' }}
                 spacer={{ default: 'spacerNone', md: 'spacerMd' }}
               >
                 <ToolbarGroup
@@ -114,13 +115,26 @@ export const HeaderApp: React.FC = () => {
                   }}
                 >
                   <Dropdown
-                    isPlain
-                    position='right'
                     isOpen={isKebabDropdownOpen}
                     onSelect={onKebabDropdownSelect}
-                    toggle={<KebabToggle onToggle={onKebabDropdownToggle} />}
-                    dropdownItems={kebabDropdownItems}
-                  />
+                    onOpenChange={(isOpen: boolean) =>
+                      setIsKebabDropdownOpen(isOpen)
+                    }
+                    popperProps={{ position: 'right' }}
+                    toggle={(toggleRef: React.Ref<MenuToggleElement>) => (
+                      <MenuToggle
+                        ref={toggleRef}
+                        onClick={onKebabDropdownToggle}
+                        isExpanded={isKebabDropdownOpen}
+                        variant='plain'
+                        aria-label='About'
+                      >
+                        <EllipsisVIcon aria-hidden='true' />
+                      </MenuToggle>
+                    )}
+                  >
+                    <DropdownList>{kebabDropdownItems}</DropdownList>
+                  </Dropdown>
                 </ToolbarItem>
               </ToolbarGroup>
             </ToolbarContent>

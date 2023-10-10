@@ -35,7 +35,7 @@ export const InsightsRoutes = () => {
         {routes.map(({ component: Component, path }, index) => (
           <Route key={index} path={path} element={<Component />} />
         ))}
-        <Route path='*' element={OopsPage} />
+        <Route path='*' element={<OopsPage />} />
       </Routes>
     </Suspense>
   );

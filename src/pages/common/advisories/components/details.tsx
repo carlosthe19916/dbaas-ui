@@ -4,30 +4,16 @@ import {
   DescriptionListDescription,
   DescriptionListGroup,
   DescriptionListTerm,
-  Flex,
-  FlexItem,
-  Grid,
-  GridItem,
   Label,
   LabelProps,
   List,
   ListItem,
   Spinner,
   Tooltip,
-  TreeView,
-  TreeViewDataItem,
 } from '@patternfly/react-core';
-import {
-  Table,
-  TableComposable,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-} from '@patternfly/react-table';
+import { Table, Tbody, Td, Th, Thead, Tr } from '@patternfly/react-table';
 import React from 'react';
-import { Advisory, BaseSeverity, Branch } from 'src/api/models';
+import { Advisory, BaseSeverity } from 'src/api/models';
 import { useAdvisoryById } from 'src/queries/advisories';
 
 type BaseSeverityListType = {
@@ -94,7 +80,7 @@ export const AdvisoryDetails: React.FC<AdvisoryDetailsProps> = ({
 
   return (
     <>
-      <TableComposable aria-label='CVEs table' variant='compact'>
+      <Table aria-label='CVEs table' variant='compact'>
         <Thead>
           <Tr>
             <Th>CVE ID</Th>
@@ -155,7 +141,7 @@ export const AdvisoryDetails: React.FC<AdvisoryDetailsProps> = ({
             </Tr>
           ))}
         </Tbody>
-      </TableComposable>
+      </Table>
     </>
   );
 };

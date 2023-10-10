@@ -6,7 +6,6 @@ import {
   DescriptionListDescription,
   DescriptionListGroup,
   DescriptionListTerm,
-  EmptyState,
   Grid,
   GridItem,
   Label,
@@ -21,7 +20,7 @@ import {
 import spacing from '@patternfly/react-styles/css/utilities/Spacing/spacing';
 import {
   ExpandableRowContent,
-  TableComposable,
+  Table,
   Tbody,
   Td,
   Th,
@@ -109,11 +108,7 @@ export const Vulnerabilities: React.FC<VulnerabilitiesProps> = ({
         backgroundColor: 'var(--pf-global--BackgroundColor--100)',
       }}
     >
-      <TableComposable
-        {...tableProps}
-        isExpandable
-        aria-label='Vulnerabilities table'
-      >
+      <Table {...tableProps} isExpandable aria-label='Vulnerabilities table'>
         <Thead>
           <Tr>
             <TableHeaderContentWithControls {...tableControls}>
@@ -260,7 +255,7 @@ export const Vulnerabilities: React.FC<VulnerabilitiesProps> = ({
             );
           })}
         </ConditionalTableBody>
-      </TableComposable>
+      </Table>
       <SimplePagination
         idPrefix='vulnerabilities-table'
         isTop={false}

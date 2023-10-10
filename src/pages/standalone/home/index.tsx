@@ -175,10 +175,10 @@ const HomePage = () => {
                     <ToolbarItem>
                       <Button variant='primary'>Search</Button>
                     </ToolbarItem>
-                    <ToolbarItem variant='separator' />
-                    <ToolbarItem>
+                    {/* <ToolbarItem variant='separator' /> */}
+                    {/* <ToolbarItem>
                       <Button variant='secondary'>Upload SBOM</Button>
-                    </ToolbarItem>
+                    </ToolbarItem> */}
                   </ToolbarContent>
                 </Toolbar>
               </Bullseye>
@@ -303,7 +303,7 @@ const HomePage = () => {
                   </CardBody>
                   <CardFooter>
                     <Bullseye>
-                      <Button variant={ButtonVariant.primary} isLarge>
+                      <Button variant={ButtonVariant.primary} size='lg'>
                         Buy now
                       </Button>
                     </Bullseye>

@@ -149,25 +149,10 @@ export const serializeFilterRequestParamsForApi = (
   serializedParams: URLSearchParams,
 ) => {
   const { filters } = deserializedParams;
-  // if (filters) {
-  //   serializedParams.append(
-  //     "filter",
-  //     filters.map(serializeFilterForApi).join(",")
-  //   );
-  // }
-
   if (filters) {
-    filters.forEach((filter) => {
-      const { field, operator, value } = filter;
-
-      const joinedValue =
-        typeof value === 'string'
-          ? value
-          : typeof value === 'number'
-          ? `"${value}"`
-          : `(${value.list.join(value.operator === 'OR' ? '|' : ',')})`;
-
-      serializedParams.append(field, joinedValue);
-    });
+    serializedParams.append(
+      'filter',
+      filters.map(serializeFilterForApi).join(','),
+    );
   }
 };

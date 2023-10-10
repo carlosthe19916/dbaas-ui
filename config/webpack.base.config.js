@@ -30,7 +30,7 @@ const defaultConfigs = [
   { name: 'API_BASE_PATH', default: '', scope: 'global' },
   { name: 'UI_BASE_PATH', default: '', scope: 'global' },
   { name: 'DEPLOYMENT_MODE', default: 'standalone', scope: 'global' },
-  { name: 'APPLICATION_NAME', default: 'Chicken Coop', scope: 'global' },
+  { name: 'APPLICATION_NAME', default: 'Trustification Console', scope: 'global' },
   { name: 'UI_EXTERNAL_LOGIN_URI', default: '/login', scope: 'global' },
   { name: 'UI_COMMIT_HASH', default: gitCommit, scope: 'global' },
 

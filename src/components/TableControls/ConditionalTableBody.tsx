@@ -33,7 +33,7 @@ export const ConditionalTableBody: React.FC<IConditionalTableBodyProps> = ({
   children,
 }) => {
   const error = (
-    <EmptyState variant={EmptyStateVariant.small}>
+    <EmptyState variant={EmptyStateVariant.sm}>
       <EmptyStateIcon
         icon={ExclamationCircleIcon}
         color={globalDangerColor200.value}
@@ -48,7 +48,7 @@ export const ConditionalTableBody: React.FC<IConditionalTableBodyProps> = ({
   );
 
   const noData = (
-    <EmptyState variant={EmptyStateVariant.small}>
+    <EmptyState variant={EmptyStateVariant.sm}>
       <EmptyStateIcon icon={CubesIcon} />
       <Title headingLevel='h2' size='lg'>
         No data available

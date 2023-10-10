@@ -16,7 +16,7 @@ import DownloadIcon from '@patternfly/react-icons/dist/esm/icons/download-icon';
 import spacing from '@patternfly/react-styles/css/utilities/Spacing/spacing';
 import {
   ExpandableRowContent,
-  TableComposable,
+  Table,
   Tbody,
   Td,
   Th,
@@ -166,7 +166,7 @@ export const AdvisoriesPage: React.FC = () => {
             </ToolbarContent>
           </Toolbar>
 
-          <TableComposable {...tableProps} aria-label='Advisories table'>
+          <Table {...tableProps} aria-label='Advisories table'>
             <Thead>
               <Tr>
                 <TableHeaderContentWithControls {...tableControls}>
@@ -252,7 +252,7 @@ export const AdvisoriesPage: React.FC = () => {
                 );
               })}
             </ConditionalTableBody>
-          </TableComposable>
+          </Table>
 
           <SimplePagination
             idPrefix='advisories-table'

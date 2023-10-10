@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Constants } from 'src/constants';
 import { formatPath } from 'src/paths';
 import { DisallowCharacters } from 'src/utilities/type-utils';
 import { objectKeys } from 'src/utilities/utils';
