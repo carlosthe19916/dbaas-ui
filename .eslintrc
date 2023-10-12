@@ -25,7 +25,8 @@
   "globals": {
     // overridden in test/.eslintrc
     "APPLICATION_NAME": "readonly",
-    "UI_BASE_PATH": "readonly"
+    "UI_BASE_PATH": "readonly",
+    "UI_USE_MOCK_DATA": "readonly"
   },
   "rules": {
     "curly": ["error", "all"],

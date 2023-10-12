@@ -6,6 +6,7 @@ module.exports = webpackBase({
   API_HOST: '',
   API_BASE_PATH: '/api/trustification/',
   UI_BASE_PATH: '/ui/',
+  UI_USE_MOCK_DATA: false,
   DEPLOYMENT_MODE: 'standalone',
   UI_USE_HTTPS: false,
   UI_DEBUG: false,

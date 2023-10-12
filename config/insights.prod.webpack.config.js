@@ -10,6 +10,7 @@ module.exports = webpackBase({
     cloudBeta === 'true'
       ? '/preview/ansible/trusted-content/'
       : '/ansible/trusted-content/',
+  UI_USE_MOCK_DATA: false,
   DEPLOYMENT_MODE: 'insights',
   UI_USE_HTTPS: false,
   UI_DEBUG: false,

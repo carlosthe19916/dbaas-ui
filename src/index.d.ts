@@ -10,6 +10,7 @@ declare var API_HOST;
 declare var APPLICATION_NAME;
 declare var DEPLOYMENT_MODE;
 declare var UI_BASE_PATH;
+declare var UI_USE_MOCK_DATA;
 declare var UI_COMMIT_HASH;
 declare var UI_EXTERNAL_LOGIN_URI;
 

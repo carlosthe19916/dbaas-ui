@@ -169,3 +169,16 @@ export interface PackageDetails {
     versionInfo: string;
   }[];
 }
+
+// Product
+
+export interface Product {
+  id: string;
+  name: string;
+  version: string;
+  supplier: string;
+  createdOn: string;
+  packagesCount: number;
+  advisoriesCount: number;
+  sbomId: string;
+}

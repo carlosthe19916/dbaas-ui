@@ -1,5 +1,7 @@
 import { Page } from '@patternfly/react-core';
 import React from 'react';
+import { Notifications } from 'src/components/Notifications';
+import { PageContentWithDrawerProvider } from 'src/components/PageDrawerContext';
 import { HeaderApp } from './header';
 import { SidebarApp } from './sidebar';
 
@@ -12,7 +14,10 @@ export const StandaloneLayout: React.FC<StandaloneLayoutProps> = ({
 }) => {
   return (
     <Page header={<HeaderApp />} sidebar={<SidebarApp />} isManagedSidebar>
-      {children}
+      <PageContentWithDrawerProvider>
+        {children}
+        <Notifications />
+      </PageContentWithDrawerProvider>
     </Page>
   );
 };

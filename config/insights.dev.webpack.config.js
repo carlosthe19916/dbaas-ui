@@ -5,6 +5,8 @@ const proxyPort = process.env.API_PROXY_PORT || '8083';
 
 const cloudBeta = process.env.TRUST_CLOUD_BETA; // "true" | "false" | undefined (=default)
 
+const useMockData = process.env.UI_USE_MOCK_DATA || false;
+
 module.exports = webpackBase({
   // The host where the API lives. EX: https://localhost:5001
   API_HOST: '',
@@ -30,6 +32,9 @@ module.exports = webpackBase({
   // Port that the UI is served over
   UI_PORT: 3000,
 
+  // Whether or not use the *.mock data rather than actual REST calls
+  UI_USE_MOCK_DATA: useMockData,
+  
   // Determines if the app should be compiled to run on insights or on
   // another platform. Options: insights, standalone
   DEPLOYMENT_MODE: 'insights',

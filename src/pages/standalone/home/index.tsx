@@ -269,72 +269,48 @@ const HomePage = () => {
       <PageSection>
         <Grid hasGutter>
           <GridItem md={6}>
-            <Stack hasGutter>
-              <StackItem>
-                <Card>
-                  <CardTitle>Get started!</CardTitle>
-                  <CardBody>
-                    <List isPlain>
-                      <ListItem>
-                        <a>Searching for Trusted Content</a>
-                      </ListItem>
-                      <ListItem>
-                        <a>Uploading software bill of materials files</a>
-                      </ListItem>
-                      <ListItem>
-                        <a>Configuring the Trusted Content VSCode extension</a>
-                      </ListItem>
-                      <ListItem>
-                        <a>Glosary</a>
-                      </ListItem>
-                      <ListItem>
-                        <a>Frecuently asked questions</a>
-                      </ListItem>
-                    </List>
-                  </CardBody>
-                </Card>
-              </StackItem>
-              <StackItem>
-                <Card>
-                  <CardTitle>Subscribe</CardTitle>
-                  <CardBody>
-                    Large enterprises to single developers, we have the right
-                    subscription for you
-                  </CardBody>
-                  <CardFooter>
-                    <Bullseye>
-                      <Button variant={ButtonVariant.primary} size='lg'>
-                        Buy now
-                      </Button>
-                    </Bullseye>
-                  </CardFooter>
-                </Card>
-              </StackItem>
-            </Stack>
+            <Card isFullHeight>
+              <CardTitle>Scan your SBOM</CardTitle>
+              <CardBody>
+                By scanning your Software Bill of Materials (SBOM) file you
+                receive a detailed report of the dependencies, and any potential
+                vulnerabilities in your software stack.
+              </CardBody>
+              <CardBody>
+                Start by clicking the <strong>Scan an SBOM</strong> button. Red
+                Hat does not store a copy of your SBOM file.
+              </CardBody>
+              <CardFooter>
+                <Bullseye>
+                  <Button variant={ButtonVariant.primary} size='lg'>
+                    Scan an SBOM
+                  </Button>
+                </Bullseye>
+              </CardFooter>
+            </Card>
           </GridItem>
           <GridItem md={6}>
             <Card isFullHeight>
-              <CardTitle>Why trust Red Hat?</CardTitle>
+              <CardTitle>Get started!</CardTitle>
               <CardBody>
-                <iframe
-                  width='400'
-                  height='400'
-                  src='https://www.youtube.com/embed/BqpWvESLW78'
-                  title='YouTube video player'
-                  // frameborder='0'
-                  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-                  // allowfullscreen
-                  style={{ height: '100%', width: '100%' }}
-                ></iframe>
+                <List isPlain>
+                  <ListItem>
+                    <a>Searching for Trusted Content</a>
+                  </ListItem>
+                  <ListItem>
+                    <a>Uploading software bill of materials files</a>
+                  </ListItem>
+                  <ListItem>
+                    <a>Configuring the Trusted Content VSCode extension</a>
+                  </ListItem>
+                  <ListItem>
+                    <a>Glosary</a>
+                  </ListItem>
+                  <ListItem>
+                    <a>Frecuently asked questions</a>
+                  </ListItem>
+                </List>
               </CardBody>
-              <CardFooter>
-                <Text component='p'>Experience, OSS knowledge, etc.</Text>
-                <Text component='p'>
-                  How you can use this information in your org so that you can
-                  respond to defects/vuln the same we respond in our software.{' '}
-                  <a>Learn more</a>
-                </Text>
-              </CardFooter>
             </Card>
           </GridItem>
         </Grid>

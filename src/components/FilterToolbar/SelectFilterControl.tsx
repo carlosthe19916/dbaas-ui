@@ -72,8 +72,12 @@ export const SelectFilterControl = <TItem, TFilterCategoryKey extends string>({
   const chips = selections ? selections.map(getChipFromOptionValue) : [];
 
   const renderSelectOptions = (options: OptionPropsWithKey[]) =>
-    options.map((optionProps) => (
-      <SelectOption {...(optionProps as any)} key={optionProps.key} />
+    options.map(({ component, ...optionProps }) => (
+      <SelectOption
+        {...optionProps}
+        key={optionProps.key}
+        component={component as any}
+      />
     ));
 
   return (

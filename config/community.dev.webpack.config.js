@@ -6,6 +6,7 @@ const proxyPort = process.env.API_PROXY_PORT || '5001';
 const apiBasePath = process.env.API_BASE_PATH || '/api/';
 const uiExternalLoginURI =
   process.env.UI_EXTERNAL_LOGIN_URI || '/login/github/';
+const useMockData = process.env.UI_USE_MOCK_DATA || false;
 
 module.exports = webpackBase({
   // The host where the API lives. EX: https://localhost:5001
@@ -19,6 +20,9 @@ module.exports = webpackBase({
 
   // Port that the UI is served over
   UI_PORT: 3000,
+
+  // Whether or not use the *.mock data rather than actual REST calls
+  UI_USE_MOCK_DATA: useMockData,
 
   // Determines if the app should be compiled to run on insights or on
   // another platform. Options: insights, standalone

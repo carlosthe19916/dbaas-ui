@@ -29,7 +29,17 @@ export const SidebarApp: React.FC = () => {
                 return css(LINK_CLASS, isActive ? ACTIVE_LINK_CLASS : '');
               }}
             >
-              Trusted Content
+              Home
+            </NavLink>
+          </li>
+          <li className='pf-v5-c-nav__item'>
+            <NavLink
+              to={Paths.products}
+              className={({ isActive }) => {
+                return css(LINK_CLASS, isActive ? ACTIVE_LINK_CLASS : '');
+              }}
+            >
+              Products
             </NavLink>
           </li>
           <NavExpandable
@@ -58,35 +68,6 @@ export const SidebarApp: React.FC = () => {
                 Advisories
               </NavLink>
             </li>
-          </NavExpandable>
-          <NavExpandable title='REST APIs'>
-            <NavItem>
-              <a
-                href='https://api.trustification.dev/swagger-ui/'
-                target='_blank'
-              >
-                API&nbsp;
-                <ExternalLinkSquareAltIcon />
-              </a>
-            </NavItem>
-            <NavItem>
-              <a
-                href='https://sbom.trustification.dev/swagger-ui/'
-                target='_blank'
-              >
-                SBOM API&nbsp;
-                <ExternalLinkSquareAltIcon />
-              </a>
-            </NavItem>
-            <NavItem>
-              <a
-                href='https://vex.trustification.dev/swagger-ui/'
-                target='_blank'
-              >
-                VEX API&nbsp;
-                <ExternalLinkSquareAltIcon />
-              </a>
-            </NavItem>
           </NavExpandable>
         </NavList>
       </Nav>

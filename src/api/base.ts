@@ -5,10 +5,21 @@ import { serializeRequestParamsForApi } from 'src/hooks/table-controls';
 import { ParamHelper } from 'src/utilities';
 import { ApiPaginatedResult, ApiRequestParams } from './models';
 
-interface ApiSearchResult<T> {
+export interface ApiSearchResult<T> {
   total: number;
   result: T[];
 }
+
+export const apiPaginatedResponseToApiPaginatedResult = <T>(
+  data: ApiSearchResult<T>,
+  params: ApiRequestParams,
+): ApiPaginatedResult<T> => {
+  return {
+    data: data.result,
+    total: data.total,
+    params,
+  };
+};
 
 export class BaseAPI {
   apiPath: string = '';
@@ -32,16 +43,13 @@ export class BaseAPI {
     apiPath: string,
     params: ApiRequestParams = {},
   ): Promise<ApiPaginatedResult<T>> => {
-    console.log(serializeRequestParamsForApi(params));
     return this.http
       .get<ApiSearchResult<T>>(this.getPath(apiPath), {
         params: serializeRequestParamsForApi(params),
       })
-      .then(({ data }) => ({
-        data: data.result,
-        total: data.total,
-        params,
-      }));
+      .then(({ data }) =>
+        apiPaginatedResponseToApiPaginatedResult(data, params),
+      );
   };
 
   getPath(apiPath?: string) {

@@ -25,6 +25,7 @@ export function formatPath(path: string, data: any = {}, params?: ParamType) {
 }
 
 export enum Paths {
+  products = '/products',
   advisory = '/advisory',
   advisoryEdit = '/advisory/:advisoryId',
   sbom = '/sbom',
