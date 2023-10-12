@@ -4,9 +4,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { NotificationsProvider } from './components/NotificationsContext';
 import App from './loaders/standalone/loader';
 import { init } from './store';
-import { NotificationsProvider } from './components/NotificationsContext';
 
 // Entrypoint for compiling the app to run in standalone mode
 

@@ -1,1 +1,1 @@
-export { Organizations as default } from "./products";
+export { Organizations as default } from './products';

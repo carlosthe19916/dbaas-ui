@@ -34,7 +34,7 @@ module.exports = webpackBase({
 
   // Whether or not use the *.mock data rather than actual REST calls
   UI_USE_MOCK_DATA: useMockData,
-  
+
   // Determines if the app should be compiled to run on insights or on
   // another platform. Options: insights, standalone
   DEPLOYMENT_MODE: 'insights',
