@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: trusted-content
+objects:
+  - apiVersion: cloud.redhat.com/v1alpha1
+    kind: Frontend
+    metadata:
+      name: trusted-content
+    spec:
+      envName: ${ENV_NAME}
+      title: Trusted Content
+      deploymentRepo: https://github.com/RedHatInsights/dbaas-ui
+      frontend:
+        paths:
+          - /apps/trusted-content
+      API:
+        versions:
+          - v1
+      image: ${IMAGE}:${IMAGE_TAG}
+parameters:
+  - name: ENV_NAME
+    required: true
+  - name: IMAGE_TAG
+    required: true
+  - name: IMAGE
+    value: quay.io/cloudservices/trusted-content-frontend
